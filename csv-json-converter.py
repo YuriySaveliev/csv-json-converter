@@ -8,8 +8,6 @@ rows_number = 50
 
 columns = range(columns_number)
 rows = range(rows_number)
-row_content = []
-json_data = []
 data_file_name = 'rnd.csv'
 output_file_name = 'output.json'
 
@@ -30,6 +28,7 @@ def write_csv_data(file_name, input_data):
             writer.writerow(row)
 
 def create_json_data(file_name):
+    json_data = []
     with open(file_name, 'r') as csvfile:
         reader = csv.reader(csvfile)
         for index, row in enumerate(reader):
