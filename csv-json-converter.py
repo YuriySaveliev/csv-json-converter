@@ -28,20 +28,21 @@ def write_csv_data(file_name, input_data):
             writer.writerow(row)
 
 def create_json_data(file_name):
-    json_data = []
+    json_data = {}
+
     with open(file_name, 'r') as csvfile:
         reader = csv.reader(csvfile)
         for index, row in enumerate(reader):
-            for column in row:
-                json_data.append(json.dumps({index: column}))
+            new_list = []
+            for item in row:
+                new_list.append(int(item))
+            json_data.update(dict({index: new_list}))
 
     return json_data
 
 def create_output_file(file_name, data):
     with open(file_name, 'w') as jsonfile:
-        writer = csv.writer(jsonfile)
-        for row in data:
-            writer.writerow(row)
+        json.dump(data, jsonfile)
 
 def init():
     csv_content = create_data(rows, columns)
